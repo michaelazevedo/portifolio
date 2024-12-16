@@ -71,59 +71,6 @@
         .card a:hover {
             background: #34495e;
         }
-
-        /* Dark theme for authentication modal */
-        .auth-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
-            width: 300px;
-        }
-
-        .auth-container h2 {
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            text-align: center;
-        }
-
-        .auth-container input {
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        .auth-container .button-group {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            gap: 10px;
-        }
-
-        .auth-container button {
-            padding: 10px 15px;
-            background-color: #34495e;
-            color: #ecf0f1;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            flex: 1;
-        }
-
-        .auth-container button:hover {
-            background-color: #3b4f63;
-        }
     </style>
 </head>
 <body>
@@ -159,87 +106,35 @@
         <div class="card">
             <img src="imagens/fluxo.png" alt="Dashboard 1">
             <h3>Dashboard Fluxo</h3>
-            <a href="#" onclick="authenticate('https://app.powerbi.com/reportEmbed?reportId=f8b24ec6-62f6-4532-ace5-11ed784b84da&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338')">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/reportEmbed?reportId=f8b24ec6-62f6-4532-ace5-11ed784b84da&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank">Abrir Dashboard</a>
         </div>
 
         <div class="card">
             <img src="imagens/faturamento pca.png" alt="Dashboard 2">
             <h3>Dashboard Faturamento Pca</h3>
-            <a href="#" onclick="authenticate('https://app.powerbi.com/reportEmbed?reportId=f665d737-2b7b-4401-8ded-eaf24520b1d7&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338')">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/reportEmbed?reportId=f665d737-2b7b-4401-8ded-eaf24520b1d7&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank">Abrir Dashboard</a>
         </div>
 
         <div class="card">
             <img src="imagens/analises-linhas.png" alt="Dashboard 3">
             <h3>Dashboard Análises Linhas</h3>
-            <a href="#" onclick="authenticate('https://app.powerbi.com/reportEmbed?reportId=9215e2b7-004b-41a1-bc7c-8e978db854cd&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338')">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/reportEmbed?reportId=9215e2b7-004b-41a1-bc7c-8e978db854cd&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank">Abrir Dashboard</a>
         </div>
 
         <div class="card">
             <img src="imagens/projeto saude.png" alt="Dashboard 4">
             <h3>Dashboard Projeto Saúde</h3>
-            <a href="#" onclick="authenticate('https://app.powerbi.com/reportEmbed?reportId=1b3f2867-93f3-4ba6-8983-01386d2af8f3&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338')">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/reportEmbed?reportId=1b3f2867-93f3-4ba6-8983-01386d2af8f3&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank">Abrir Dashboard</a>
         </div>
 
         <div class="card">
             <img src="imagens/Turismo.png" alt="Dashboard 5">
             <h3>Dashboard Turismo</h3>
-            <a href="#" onclick="authenticate('https://app.powerbi.com/reportEmbed?reportId=058cc265-cdc3-4342-a418-0a275ff4f39d&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338')">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/reportEmbed?reportId=058cc265-cdc3-4342-a418-0a275ff4f39d&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank">Abrir Dashboard</a>
         </div>
         <!-- Adicione mais cards conforme necessário -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function authenticate(link) {
-            const authContainer = document.createElement("div");
-            authContainer.className = "auth-container";
-
-            const title = document.createElement("h2");
-            title.textContent = "Insira suas credenciais";
-
-            const usernameInput = document.createElement("input");
-            usernameInput.type = "text";
-            usernameInput.placeholder = "Digite o usuário";
-
-            const passwordInput = document.createElement("input");
-            passwordInput.type = "password";
-            passwordInput.placeholder = "Digite a senha";
-
-            const buttonGroup = document.createElement("div");
-            buttonGroup.className = "button-group";
-
-            const confirmButton = document.createElement("button");
-            confirmButton.textContent = "Confirmar";
-
-            const cancelButton = document.createElement("button");
-            cancelButton.textContent = "Cancelar";
-
-            buttonGroup.appendChild(confirmButton);
-            buttonGroup.appendChild(cancelButton);
-
-            authContainer.appendChild(title);
-            authContainer.appendChild(usernameInput);
-            authContainer.appendChild(passwordInput);
-            authContainer.appendChild(buttonGroup);
-
-            document.body.appendChild(authContainer);
-
-            confirmButton.addEventListener("click", () => {
-                const username = usernameInput.value;
-                const password = passwordInput.value;
-
-                if (username === "Analista" && password === "Gbs@2024") {
-                    document.body.removeChild(authContainer);
-                    window.open(link, "_blank");
-                } else {
-                    alert("Usuário ou senha incorretos!");
-                }
-            });
-
-            cancelButton.addEventListener("click", () => {
-                document.body.removeChild(authContainer);
-            });
-        }
-    </script>
 </body>
 </html>
