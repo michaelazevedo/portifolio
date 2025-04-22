@@ -12,16 +12,35 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212; /* Black background */
-            color: #d1d5db; /* Light gray text for contrast */
+            background-color: #121212; /* Cor de fundo reserva */
+            color: #d1d5db; /* Texto cinza claro */
+            position: relative; /* Para posicionamento do pseudo-elemento */
+        }
+
+        /* Imagem de fundo com opacidade */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('imagens/garcia 90 anos.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.2; /* Opacidade da imagem de fundo */
+            z-index: -1; /* Coloca atrás de todo o conteúdo */
         }
 
         header {
-            background: linear-gradient(135deg, #1e3a8a, #0f172a); /* Dark blue to black gradient */
+            background: linear-gradient(135deg, #0c343d, #85999e); /* Gradiente azul escuro para preto */
             color: #ffffff;
             padding: 30px;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative; /* Garante que o header fique acima do fundo */
+            z-index: 1;
         }
 
         header h1 {
@@ -42,16 +61,17 @@
             padding: 20px;
             max-width: 1600px;
             margin: 0 auto;
+            position: relative; /* Garante que o container fique acima do fundo */
+            z-index: 1;
         }
 
         .card {
-            background: #1e1e1e; /* Dark gray card background */
+            background: rgba(30, 30, 30, 0.5); /* Fundo cinza escuro com 50% de transparência */
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             width: 100%;
             cursor: pointer;
-            position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -83,7 +103,7 @@
             margin: 15px;
             padding: 10px;
             text-align: center;
-            background: linear-gradient(135deg, #1e40af, #4b5563); /* Dark blue to gray gradient */
+            background: linear-gradient(135deg, #1e40af, #4b5563); /* Gradiente azul escuro para cinza */
             color: #ffffff;
             text-decoration: none;
             border-radius: 8px;
@@ -92,21 +112,23 @@
         }
 
         .card a.button:hover {
-            background: linear-gradient(135deg, #1e3a8a, #374151); /* Slightly darker blue and gray */
+            background: linear-gradient(135deg, #1e3a8a, #374151); /* Azul escuro e cinza mais escuro */
         }
 
-        /* Navbar adjustments */
+        /* Ajustes da navbar */
         .navbar {
             background-color: #1e1e1e !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative; /* Garante que a navbar fique acima do fundo */
+            z-index: 1;
         }
 
         .navbar-brand, .nav-link {
-            color: #d1d5db !important; /* Light gray */
+            color: #d1d5db !important; /* Cinza claro */
         }
 
         .nav-link:hover {
-            color: #1e40af !important; /* Dark blue hover */
+            color: #1e40af !important; /* Azul escuro no hover */
         }
 
         .dropdown-menu {
@@ -123,7 +145,7 @@
             color: #ffffff;
         }
 
-        /* Responsive adjustments */
+        /* Ajustes responsivos */
         @media (max-width: 1200px) {
             .container {
                 grid-template-columns: repeat(4, 1fr);
@@ -184,7 +206,7 @@
                 <img src="imagens/analises-linhas.png" alt="Dashboard 4">
             </a>
             <h3>Dashboard Análises Linhas</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiMWYzZWRiYWEtOTQxYi00Zjg5LTg0ZDctY2MwMDIwNWRhMzY4IiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiMWYzZWRiYWEtOTQxYi00Zjg5LTg0ZDctY2MwMDIwNWRhMzY4IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>   
         <!-- Analise de linhas versao mobile -->
         <div class="card">
@@ -200,7 +222,7 @@
                 <img src="imagens/pcanovo.png" alt="Dashboard 9">
             </a>
             <h3>Faturamento Pca</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiYjZlOGY2ZWYtNzg4Yi00NTU0LThhYzQtNTA3OGIyN2E3YmVmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiYjZlOGY2ZWYtNzg4Yi00NTU0LThhYzQtNTA3OGIyN2E3YmVmIiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Antecipação de horarios -->
         <div class="card">
@@ -208,7 +230,7 @@
                 <img src="imagens/antecipação.png" alt="Dashboard 9">
             </a>
             <h3>Antecipação de Horários</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiZDU1MjYxNWEtZDUwZS00NjJlLWExZmEtYTE0OTEzMTMyNDNlIiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZDU1MjYxNWEtZDUwZS00NjJlLWExZmEtYTE0OTEzMTMyNDNlIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- METROPOLITANO -->
         <div class="card">
@@ -224,7 +246,7 @@
                 <img src="imagens/cancelados.png" alt="Dashboard 9">
             </a>
             <h3>Faturamento vs Devolvidos</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiYzUxMTY4OWUtYWZlOS00ZWE3LTkyNDktZTY0MGJmYjJhYTAyIiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiYzUxMTY4OWUtYWZlOS00ZWE3LTkyNDktZTY0MGJmYjJhYTAyIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Dashboard para mostrar faturamento e devolvidos -->  
         <div class="card">
@@ -236,11 +258,11 @@
         </div>
         <!-- Card Vendas -->
         <div class="card">
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiZjg2MDNjZDgtYmNhMy00OGUyLWEzZjMtZmJlZjMyOWY2NjNmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZjg2MDNjZDgtYmNhMy00OGUyLWEzZjMtZmJlZjMyOWY2NjNmIiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">
                 <img src="imagens/vendas.png" alt="Dashboard 1">
             </a>
             <h3>Dashboard Vendas(Andamento)</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiZjg2MDNjZDgtYmNhMy00OGUyLWEzZjMtZmJlZjMyOWY2NjNmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZjg2MDNjZDgtYmNhMy00OGUyLWEzZjMtZmJlZjMyOWY2NjNmIiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Card 2 -->
         <div class="card">
@@ -248,7 +270,7 @@
                 <img src="imagens/fluxo.png" alt="Dashboard 2">
             </a>
             <h3>Dashboard Fluxo(Andamento)</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiZTc3NjY4MGQtNGE2MS00NGMxLTkwZmMtYWM2YmIwMTEyYzg3IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZTc3NjY4MGQtNGE2MS00NGMxLTkwZmMtYWM2YmIwMTEyYzg3IiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>           
         <!-- Card 5 -->
         <div class="card">
@@ -256,7 +278,7 @@
                 <img src="imagens/projeto saude.png" alt="Dashboard 5">
             </a>
             <h3>Dashboard Projeto Saúde</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiNjM1ZmFhZDQtYzQzYi00ZjQ0LWEyNTMtMjA0MDM4M2NkZTlkIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiNjM1ZmFhZDQtYzQzYi00ZjQ0LWEyNTMtMjA0MDM4M2NkZTlkIiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Card 6 -->
         <div class="card">
@@ -264,7 +286,7 @@
                 <img src="imagens/Turismo.png" alt="Dashboard 6">
             </a>
             <h3>Dashboard Turismo(Andamento)</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiNTNiNzI3ZDAtZTgwZi00M2JhLTkxZGYtYWRlNjY2MWM0MDJjIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiNTNiNzI3ZDAtZTgwZi00M2JhLTkxZGYtYWRlNjY2MWM0MDJjIiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Card 7 -->
         <div class="card">
@@ -284,7 +306,7 @@
         </div>
         <!-- Card 3 -->
         <div class="card">
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiYWY0YjliYWMtYjZhNC00MDdhLWE5ODMtYmYzMDc2M2I2YWNmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiYWY0YjliYWMtYjZhNC00MDdhLWE5ODMtYmYzMDc2M3I2YWNmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">
                 <img src="imagens/faturamento pca.png" alt="Dashboard 3">
             </a>
             <h3>Faturamento Pca(Antigo)</h3>
