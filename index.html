@@ -6,47 +6,58 @@
     <title>Dashboards Grupo GBS</title>
     <link rel="icon" href="ico.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('imagens/fundo.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-color: #121212; /* Black background */
+            color: #d1d5db; /* Light gray text for contrast */
         }
 
         header {
-            background-color: rgba(44, 62, 80, 0.9);
-            color: #ecf0f1;
-            padding: 20px;
+            background: linear-gradient(135deg, #1e3a8a, #0f172a); /* Dark blue to black gradient */
+            color: #ffffff;
+            padding: 30px;
             text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
         }
 
         .container {
             display: grid;
-            grid-template-columns: repeat(5, 1fr); /* 5 cards per row */
+            grid-template-columns: repeat(5, 1fr);
             gap: 20px;
             padding: 20px;
-            max-width: 1600px; /* Optional: Limit max width for very large screens */
-            margin: 0 auto; /* Center the container */
+            max-width: 1600px;
+            margin: 0 auto;
         }
 
         .card {
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #1e1e1e; /* Dark gray card background */
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            width: 100%; /* Cards take full width of grid cell */
+            width: 100%;
             cursor: pointer;
             position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            transform: scale(1);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
 
         .card img {
@@ -57,52 +68,83 @@
         }
 
         .card:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .card h3 {
             margin: 15px;
             font-size: 1.2em;
-            color: #333;
+            color: #ffffff;
+            font-weight: 600;
         }
 
-        .card a {
+        .card a.button {
             display: block;
             margin: 15px;
             padding: 10px;
             text-align: center;
-            background: #2c3e50;
-            color: #ecf0f1;
+            background: linear-gradient(135deg, #1e40af, #4b5563); /* Dark blue to gray gradient */
+            color: #ffffff;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s ease;
         }
 
-        .card a:hover {
-            background: #34495e;
+        .card a.button:hover {
+            background: linear-gradient(135deg, #1e3a8a, #374151); /* Slightly darker blue and gray */
+        }
+
+        /* Navbar adjustments */
+        .navbar {
+            background-color: #1e1e1e !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-brand, .nav-link {
+            color: #d1d5db !important; /* Light gray */
+        }
+
+        .nav-link:hover {
+            color: #1e40af !important; /* Dark blue hover */
+        }
+
+        .dropdown-menu {
+            background-color: #1e1e1e;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-item {
+            color: #d1d5db;
+        }
+
+        .dropdown-item:hover {
+            background-color: #2d2d2d;
+            color: #ffffff;
         }
 
         /* Responsive adjustments */
         @media (max-width: 1200px) {
             .container {
-                grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
         @media (max-width: 992px) {
             .container {
-                grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 768px) {
             .container {
-                grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 576px) {
             .container {
-                grid-template-columns: 1fr; /* 1 card per row */
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -142,7 +184,7 @@
                 <img src="imagens/analises-linhas.png" alt="Dashboard 4">
             </a>
             <h3>Dashboard Análises Linhas</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiMWYzZWRiYWEtOTQxYi00Zjg5LTg0ZDctY2MwMDIwNWRhMzY4IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiMWYzZWRiYWEtOTQxYi00Zjg5LTg0ZDctY2MwMDIwNWRhMzY4IiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>   
         <!-- Analise de linhas versao mobile -->
         <div class="card">
@@ -150,7 +192,7 @@
                 <img src="imagens/analises linhas mobile.png" alt="Dashboard 4">
             </a>
             <h3>Análises Linhas (Mobile)</h3>
-            <a href="https://app.powerbi.com/links/EOTjwNZNB2?ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338&pbi_source=linkShare" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/links/EOTjwNZNB2?ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338&pbi_source=linkShare" target="_blank" class="button">Abrir Dashboard</a>
         </div>   
         <!-- Card faturamento pca novo -->
         <div class="card">
@@ -158,7 +200,7 @@
                 <img src="imagens/pcanovo.png" alt="Dashboard 9">
             </a>
             <h3>Faturamento Pca</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiYjZlOGY2ZWYtNzg4Yi00NTU0LThhYzQtNTA3OGIyN2E3YmVmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiYjZlOGY2ZWYtNzg4Yi00NTU0LThhYzQtNTA3OGIyN2E3YmVmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Antecipação de horarios -->
         <div class="card">
@@ -166,7 +208,7 @@
                 <img src="imagens/antecipação.png" alt="Dashboard 9">
             </a>
             <h3>Antecipação de Horários</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiZDU1MjYxNWEtZDUwZS00NjJlLWExZmEtYTE0OTEzMTMyNDNlIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZDU1MjYxNWEtZDUwZS00NjJlLWExZmEtYTE0OTEzMTMyNDNlIiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- METROPOLITANO -->
         <div class="card">
@@ -174,7 +216,7 @@
                 <img src="imagens/metrop.png" alt="Dashboard 9">
             </a>
             <h3>Metropolitano</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiNDBhZDg1YjItMWNjMy00ZWNmLWJkYzgtMDMwNGE1MDZiNmEzIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiNDBhZDg1YjItMWNjMy00ZWNmLWJkYzgtMDMwNGE1MDZiNmEzIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Dashboard para mostrar faturamento e devolvidos -->          
         <div class="card">
@@ -182,7 +224,7 @@
                 <img src="imagens/cancelados.png" alt="Dashboard 9">
             </a>
             <h3>Faturamento vs Devolvidos</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiYzUxMTY4OWUtYWZlOS00ZWE3LTkyNDktZTY0MGJmYjJhYTAyIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiYzUxMTY4OWUtYWZlOS00ZWE3LTkyNDktZTY0MGJmYjJhYTAyIiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Dashboard para mostrar faturamento e devolvidos -->  
         <div class="card">
@@ -190,7 +232,7 @@
                 <img src="imagens/sac2.png" alt="Dashboard 1">
             </a>
             <h3>Dashboard SAC (Em Construção)</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiYzQ0ODA4YTUtZDZmZC00YTllLTkzN2UtOGNiNjM4MDliZGIwIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiYzQ0ODA4YTUtZDZmZC00YTllLTkzN2UtOGNiNjM4MDliZGIwIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Card Vendas -->
         <div class="card">
@@ -198,7 +240,7 @@
                 <img src="imagens/vendas.png" alt="Dashboard 1">
             </a>
             <h3>Dashboard Vendas(Andamento)</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiZjg2MDNjZDgtYmNhMy00OGUyLWEzZjMtZmJlZjMyOWY2NjNmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZjg2MDNjZDgtYmNhMy00OGUyLWEzZjMtZmJlZjMyOWY2NjNmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Card 2 -->
         <div class="card">
@@ -206,7 +248,7 @@
                 <img src="imagens/fluxo.png" alt="Dashboard 2">
             </a>
             <h3>Dashboard Fluxo(Andamento)</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiZTc3NjY4MGQtNGE2MS00NGMxLTkwZmMtYWM2YmIwMTEyYzg3IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZTc3NjY4MGQtNGE2MS00NGMxLTkwZmMtYWM2YmIwMTEyYzg3IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>           
         <!-- Card 5 -->
         <div class="card">
@@ -214,7 +256,7 @@
                 <img src="imagens/projeto saude.png" alt="Dashboard 5">
             </a>
             <h3>Dashboard Projeto Saúde</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiNjM1ZmFhZDQtYzQzYi00ZjQ0LWEyNTMtMjA0MDM4M2NkZTlkIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiNjM1ZmFhZDQtYzQzYi00ZjQ0LWEyNTMtMjA0MDM4M2NkZTlkIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Card 6 -->
         <div class="card">
@@ -222,7 +264,7 @@
                 <img src="imagens/Turismo.png" alt="Dashboard 6">
             </a>
             <h3>Dashboard Turismo(Andamento)</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiNTNiNzI3ZDAtZTgwZi00M2JhLTkxZGYtYWRlNjY2MWM0MDJjIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiNTNiNzI3ZDAtZTgwZi00M2JhLTkxZGYtYWRlNjY2MWM0MDJjIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Card 7 -->
         <div class="card">
@@ -230,7 +272,7 @@
                 <img src="imagens/itinerarios.png" alt="Dashboard 7">
             </a>
             <h3>Itinerários</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiZWI2YWEwMTEtNjZlZC00Yjc4LWIyODEtMmEyMjg2ZDk3OTQ0IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZWI2YWEwMTEtNjZlZC00Yjc4LWIyODEtMmEyMjg2ZDk3OTQ0IiwidCI6IjVmM3MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Card 8 -->
         <div class="card">
@@ -238,7 +280,7 @@
                 <img src="imagens/indicado_multas.png" alt="Dashboard 8">
             </a>
             <h3>Indicadores de Multas</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiODc0OWM4MmYtNGVmNC00ZTA4LWJkNGItNGJlMGZlYjdiZmExIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiODc0OWM4MmYtNGVmNC00ZTA4LWJkNGItNGJlMGZlYjdiZmExIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
         <!-- Card 3 -->
         <div class="card">
@@ -246,7 +288,7 @@
                 <img src="imagens/faturamento pca.png" alt="Dashboard 3">
             </a>
             <h3>Faturamento Pca(Antigo)</h3>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiYWY0YjliYWMtYjZhNC00MDdhLWE5ODMtYmYzMDc2M2I2YWNmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank">Abrir Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiYWY0YjliYWMtYjZhNC00MDdhLWE5ODMtYmYzMDc2M3I2YWNmIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" target="_blank" class="button">Abrir Dashboard</a>
         </div>
     </div>
 
