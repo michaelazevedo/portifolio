@@ -12,12 +12,11 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212; /* Cor de fundo reserva */
-            color: #d1d5db; /* Texto cinza claro */
-            position: relative; /* Para posicionamento do pseudo-elemento */
+            background-color: #121212;
+            color: #d1d5db;
+            position: relative;
         }
 
-        /* Imagem de fundo com opacidade */
         body::before {
             content: '';
             position: fixed;
@@ -29,17 +28,17 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.2; /* Opacidade da imagem de fundo */
-            z-index: -1; /* Coloca atrás de todo o conteúdo */
+            opacity: 0.2;
+            z-index: -1;
         }
 
         header {
-            background: linear-gradient(135deg, #0c343d, #85999e); /* Gradiente azul escuro para preto */
+            background: linear-gradient(135deg, #0c343d, #85999e);
             color: #ffffff;
             padding: 30px;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative; /* Garante que o header fique acima do fundo */
+            position: relative;
             z-index: 1;
         }
 
@@ -61,12 +60,12 @@
             padding: 20px;
             max-width: 1600px;
             margin: 0 auto;
-            position: relative; /* Garante que o container fique acima do fundo */
+            position: relative;
             z-index: 1;
         }
 
         .card {
-            background: rgba(30, 30, 30, 0.5); /* Fundo cinza escuro com 50% de transparência */
+            background: rgba(30, 30, 30, 0.5);
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             overflow: hidden;
@@ -103,7 +102,7 @@
             margin: 15px;
             padding: 10px;
             text-align: center;
-            background: linear-gradient(135deg, #1e40af, #4b5563); /* Gradiente azul escuro para cinza */
+            background: linear-gradient(135deg, #1e40af, #4b5563);
             color: #ffffff;
             text-decoration: none;
             border-radius: 8px;
@@ -112,23 +111,22 @@
         }
 
         .card a.button:hover {
-            background: linear-gradient(135deg, #1e3a8a, #374151); /* Azul escuro e cinza mais escuro */
+            background: linear-gradient(135deg, #1e3a8a, #374151);
         }
 
-        /* Ajustes da navbar */
         .navbar {
             background-color: #1e1e1e !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative; /* Garante que a navbar fique acima do fundo */
+            position: relative;
             z-index: 1;
         }
 
         .navbar-brand, .nav-link {
-            color: #d1d5db !important; /* Cinza claro */
+            color: #d1d5db !important;
         }
 
         .nav-link:hover {
-            color: #1e40af !important; /* Azul escuro no hover */
+            color: #1e40af !important;
         }
 
         .dropdown-menu {
@@ -145,7 +143,6 @@
             color: #ffffff;
         }
 
-        /* Ajustes responsivos */
         @media (max-width: 1200px) {
             .container {
                 grid-template-columns: repeat(4, 1fr);
@@ -199,80 +196,134 @@
         <p>Setor Comercial</p>
     </header>
 
+    <!-- Modal de senha -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #1e1e1e; color: #d1d5db;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Digite a Senha</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="password" id="passwordInput" class="form-control" placeholder="Senha">
+                    <div id="errorMessage" class="text-danger mt-2" style="display: none;">Senha incorreta!</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="validatePassword()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">        
         <!-- Analise de linhas completo alterado -->
         <div class="card">
-            <a href="https://app.powerbi.com/reportEmbed?reportId=c0a944ed-5e0a-4be8-9a51-f6902e3498c6&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank">
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiOTM0MjU1ZjgtZjI1ZS00MDdjLWIzNDItOGU1NjdkMzQ3ZDYwIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" class="dashboard-link">
                 <img src="imagens/garcia 90 anos.png" alt="Dashboard 4">
             </a>
             <h3>Análises Linhas</h3>
-            <a href="https://app.powerbi.com/reportEmbed?reportId=c0a944ed-5e0a-4be8-9a51-f6902e3498c6&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiOTM0MjU1ZjgtZjI1ZS00MDdjLWIzNDItOGU1NjdkMzQ3ZDYwIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" class="button dashboard-link">Abrir Dashboard</a>
         </div>        
         
         <!-- Card faturamento pca novo -->
         <div class="card">
-            <a href="https://app.powerbi.com/reportEmbed?reportId=7032681b-8113-4be9-a80b-21ae8cf365d2&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank">
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiYmQ4YzZhNmYtODY2OC00ZmIwLThhMDItYjRiZDY2OWNjYzBlIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" class="dashboard-link">
                 <img src="imagens/Capa Vendas Pca.png" alt="Dashboard 9">
             </a>
             <h3>Faturamento Pca</h3>
-            <a href="https://app.powerbi.com/reportEmbed?reportId=7032681b-8113-4be9-a80b-21ae8cf365d2&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiYmQ4YzZhNmYtODY2OC00ZmIwLThhMDItYjRiZDY2OWNjYzBlIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" class="button dashboard-link">Abrir Dashboard</a>
         </div>
 
-         <!-- VENDAS DAS AGENCIAS DADOS TOTALBUS -->
+        <!-- VENDAS DAS AGENCIAS DADOS TOTALBUS -->
         <div class="card">
-            <a href="https://app.powerbi.com/reportEmbed?reportId=54910b78-e680-46ec-aede-8f06ca32c0a0&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank">
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiOTg1NjM3ODItZjdlMy00MTliLWE2MjQtZmRiMmIzNjhkZmNiIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" class="dashboard-link">
                 <img src="imagens/vendas.jpg" alt="Dashboard 9">
             </a>
             <h3>Dashboard de Vendas</h3>
-            <a href="https://app.powerbi.com/reportEmbed?reportId=54910b78-e680-46ec-aede-8f06ca32c0a0&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiOTg1NjM3ODItZjdlMy00MTliLWE2MjQtZmRiMmIzNjhkZmNiIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" class="button dashboard-link">Abrir Dashboard</a>
         </div>
         
         <!-- Antecipação de horarios -->
         <div class="card">
-            <a href="#" target="_blank">
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiOTM0MjU1ZjgtZjI1ZS00MDdjLWIzNDItOGU1NjdkMzQ3ZDYwIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9&pageName=6a397ace0831c03c8841" class="dashboard-link">
                 <img src="imagens/antecipação.png" alt="Dashboard 9">
             </a>
             <h3>Antecipação de Horários</h3>
-            <a href="#" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiOTM0MjU1ZjgtZjI1ZS00MDdjLWIzNDItOGU1NjdkMzQ3ZDYwIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9&pageName=6a397ace0831c03c8841" class="button dashboard-link">Abrir Dashboard</a>
         </div>
         
         <!-- METROPOLITANO -->
         <div class="card">
-            <a href="https://app.powerbi.com/reportEmbed?reportId=7032681b-8113-4be9-a80b-21ae8cf365d2&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank">
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiYmQ4YzZhNmYtODY2OC00ZmIwLThhMDItYjRiZDY2OWNjYzBlIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9&pageName=7b87b06c8d8fb3fb5914" class="dashboard-link">
                 <img src="imagens/metrop.png" alt="Dashboard 9">
             </a>
             <h3>Metropolitano</h3>
-            <a href="https://app.powerbi.com/reportEmbed?reportId=7032681b-8113-4be9-a80b-21ae8cf365d2&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiYmQ4YzZhNmYtODY2OC00ZmIwLThhMDItYjRiZDY2OWNjYzBlIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9&pageName=7b87b06c8d8fb3fb5914" class="button dashboard-link">Abrir Dashboard</a>
         </div>
         
         <!-- Dashboard para mostrar faturamento e devolvidos -->          
         <div class="card">
-            <a href="https://app.powerbi.com/reportEmbed?reportId=54910b78-e680-46ec-aede-8f06ca32c0a0&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank">
+            <a href="#" data-url="https://app.powerbi.com/reportEmbed?reportId=54910b78-e680-46ec-aede-8f06ca32c0a0&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" class="dashboard-link">
                 <img src="imagens/cancelados.png" alt="Dashboard 9">
             </a>
             <h3>Análises de Vendas</h3>
-            <a href="https://app.powerbi.com/reportEmbed?reportId=54910b78-e680-46ec-aede-8f06ca32c0a0&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="#" data-url="https://app.powerbi.com/reportEmbed?reportId=54910b78-e680-46ec-aede-8f06ca32c0a0&autoAuth=true&ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338" class="button dashboard-link">Abrir Dashboard</a>
         </div>
         
         <!-- Dashboard indicadores SAC -->  
         <div class="card">
-            <a href="https://app.powerbi.com/links/8N0WokDAc1?ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338&pbi_source=linkShare" target="_blank">
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiYzQ0ODA4YTUtZDZmZC00YTllLTkzN2UtOGNiNjM4MDliZGIwIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" class="dashboard-link">
                 <img src="imagens/sac2.png" alt="Dashboard 1">
             </a>
             <h3>Dashboard SAC (Em Construção)</h3>
-            <a href="https://app.powerbi.com/links/8N0WokDAc1?ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338&pbi_source=linkShare" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiYzQ0ODA4YTUtZDZmZC00YTllLTkzN2UtOGNiNjM4MDliZGIwIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" class="button dashboard-link">Abrir Dashboard</a>
         </div>
-              
+               <!-- Dashboard indicadores Projeto Saude -->  
         <div class="card">
-            <a href="https://app.powerbi.com/links/W2lvmhBXlY?ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338&pbi_source=linkShare&bookmarkGuid=3312493b-e043-4f58-99d8-33c38d84020c" target="_blank">
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiNjM1ZmFhZDQtYzQzYi00ZjQ0LWEyNTMtMjA0MDM4M2NkZTlkIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" class="dashboard-link">
                 <img src="imagens/projeto saude.png" alt="Dashboard 5">
             </a>
             <h3>Dashboard Projeto Saúde</h3>
-            <a href="https://app.powerbi.com/links/W2lvmhBXlY?ctid=5f3c2bfc-19f9-492d-a54a-fd82a5dd6338&pbi_source=linkShare&bookmarkGuid=3312493b-e043-4f58-99d8-33c38d84020c" target="_blank" class="button">Abrir Dashboard</a>
+            <a href="#" data-url="https://app.powerbi.com/view?r=eyJrIjoiNjM1ZmFhZDQtYzQzYi00ZjQ0LWEyNTMtMjA0MDM4M2NkZTlkIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" class="button dashboard-link">Abrir Dashboard</a>
         </div>         
-       
-     
-    
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    let currentUrl = '';
+
+    // Adiciona o evento de clique a cada link com a classe dashboard-link
+    document.querySelectorAll('.dashboard-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            currentUrl = this.getAttribute('data-url');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('errorMessage').style.display = 'none';
+            new bootstrap.Modal(document.getElementById('passwordModal')).show();
+        });
+    });
+
+    // Valida a senha
+    function validatePassword() {
+        const password = document.getElementById('passwordInput').value;
+        const correctPassword = 'Gbs@20255'; // Defina a senha aqui
+        if (password === correctPassword) {
+            if (currentUrl !== '#') { // Verifica se o URL é válido
+                window.open(currentUrl, '_blank');
+            }
+            bootstrap.Modal.getInstance(document.getElementById('passwordModal')).hide();
+        } else {
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+    }
+
+    // Permite pressionar Enter para validar a senha
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            validatePassword();
+        }
+    });
+</script>
 </body>
 </html>
