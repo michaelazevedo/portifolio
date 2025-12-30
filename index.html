@@ -7,6 +7,10 @@
     <link rel="icon" href="ico.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
         * {
             margin: 0;
@@ -131,10 +135,10 @@
         .road-line:nth-child(3) { animation-delay: 1s; }
         .road-line:nth-child(4) { animation-delay: 1.5s; }
 
-        /* ÔNIBUS CORRIGIDO */
+        /* ÔNIBUS */
         .bus-container {
             position: absolute;
-            bottom: 70px; /* Ajustado para tocar na estrada */
+            bottom: 70px;
             left: -250px;
             animation: busMove 12s linear infinite;
             z-index: 5;
@@ -155,12 +159,12 @@
             width: 200px;
             height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 15px 40px 10px 10px; /* Frente mais arredondada */
+            border-radius: 15px 40px 10px 10px;
             position: absolute;
             top: 0;
             left: 0;
             box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
-            animation: busFloat 0.5s ease-in-out infinite; /* Balanço de movimento */
+            animation: busFloat 0.5s ease-in-out infinite;
         }
 
         @keyframes busFloat {
@@ -168,7 +172,6 @@
             50% { transform: translateY(-2px); }
         }
 
-        /* Janelas do Ônibus */
         .bus-window {
             position: absolute;
             background: rgba(255, 255, 255, 0.8);
@@ -183,10 +186,9 @@
         .bus-window:nth-child(4) { 
             left: 150px; 
             width: 40px; 
-            border-radius: 4px 25px 4px 4px; /* Janela frontal */
+            border-radius: 4px 25px 4px 4px;
         }
 
-        /* Rodas do Ônibus */
         .bus-wheel {
             position: absolute;
             width: 35px;
@@ -194,16 +196,14 @@
             background: #1a2235;
             border-radius: 50%;
             border: 5px solid #334155;
-            bottom: 10px; /* Posicionada em relação ao container do ônibus */
+            bottom: 10px;
             z-index: 6;
             animation: wheelRotate 0.8s linear infinite;
         }
         
-        /* Posicionamento das rodas */
         .wheel-back { left: 25px; }
         .wheel-front { right: 35px; }
 
-        /* Centro da roda */
         .bus-wheel::after {
             content: '';
             position: absolute;
@@ -221,7 +221,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Restante do Estilo... */
+        /* Navbar */
         .navbar {
             background: rgba(19, 24, 37, 0.95) !important;
             backdrop-filter: blur(10px);
@@ -231,6 +231,7 @@
             z-index: 1000;
         }
 
+        /* Cards Grid */
         .dashboard-container {
             position: relative;
             z-index: 1;
@@ -290,17 +291,16 @@
             border-radius: 10px;
             font-weight: 600;
             transition: 0.3s;
+            border: none;
         }
 
         .dashboard-link { cursor: pointer; text-decoration: none; color: inherit; }
 
-        .dropdown-menu {
-            background: var(--card-bg);
-            border: 1px solid var(--primary);
-            backdrop-filter: blur(10px);
+        /* Estilização Customizada do SweetAlert2 */
+        .swal2-popup {
+            border: 1px solid var(--primary) !important;
+            border-radius: 20px !important;
         }
-        .dropdown-item { color: white; }
-        .dropdown-item:hover { background: rgba(0, 212, 255, 0.2); color: var(--primary); }
     </style>
 </head>
 <body>
@@ -318,7 +318,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="planilhas.html">Planilhas</a></li>
                         </ul>
                     </li>
@@ -364,7 +364,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Dashboard de Vendas</h3>
-                        <span class="card-button">Acessar</span>
+                        <button class="card-button">Acessar</button>
                     </div>
                 </div>
             </div>
@@ -377,7 +377,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Análises Ocupação</h3>
-                        <span class="card-button">Acessar</span>
+                        <button class="card-button">Acessar</button>
                     </div>
                 </div>
             </div>
@@ -390,7 +390,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Faturamento Pca</h3>
-                        <span class="card-button">Acessar</span>
+                        <button class="card-button">Acessar</button>
                     </div>
                 </div>
             </div>
@@ -403,7 +403,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Análises de Linhas</h3>
-                        <span class="card-button">Acessar</span>
+                        <button class="card-button">Acessar</button>
                     </div>
                 </div>
             </div>
@@ -416,7 +416,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Express</h3>
-                        <span class="card-button">Acessar</span>
+                        <button class="card-button">Acessar</button>
                     </div>
                 </div>
             </div>
@@ -429,7 +429,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Vendas TotalBus</h3>
-                        <span class="card-button">Acessar</span>
+                        <button class="card-button">Acessar</button>
                     </div>
                 </div>
             </div>
@@ -442,7 +442,7 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">SAC</h3>
-                        <span class="card-button">Acessar</span>
+                        <button class="card-button">Acessar</button>
                     </div>
                 </div>
             </div>
@@ -455,11 +455,71 @@
 
     <script>
         document.querySelectorAll('.dashboard-link').forEach(card => {
-            card.addEventListener('click', function() {
+            card.addEventListener('click', function(e) {
+                // Previne qualquer comportamento padrão indesejado
+                e.preventDefault();
+                
                 const url = this.getAttribute('data-url');
-                if (url) {
-                    window.open(url, '_blank');
-                }
+                const senhaCorreta = 'Gbs@20255';
+
+                // Dispara o SweetAlert2 com animação de impacto
+                Swal.fire({
+                    title: 'Acesso Restrito',
+                    text: 'Digite a senha do setor para continuar:',
+                    input: 'password',
+                    inputPlaceholder: 'Sua senha aqui...',
+                    showCancelButton: true,
+                    confirmButtonText: 'Validar Acesso',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonColor: '#00d4ff',
+                    cancelButtonColor: '#334155',
+                    background: '#131825',
+                    color: '#ffffff',
+                    
+                    // Efeito de entrada (Impacto)
+                    showClass: {
+                        popup: 'animate__animated animate__zoomIn'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__zoomOut'
+                    },
+                    
+                    // Validação de campo vazio
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return 'Você precisa digitar uma senha!';
+                        }
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (result.value === senhaCorreta) {
+                            // Sucesso: Feedback visual antes de abrir
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Bem-vindo!',
+                                text: 'Redirecionando...',
+                                background: '#131825',
+                                color: '#ffffff',
+                                showConfirmButton: false,
+                                timer: 1200
+                            });
+
+                            setTimeout(() => {
+                                window.open(url, '_blank');
+                            }, 1200);
+                        } else {
+                            // Erro: Feedback de senha incorreta
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Acesso Negado',
+                                text: 'Senha incorreta. Tente novamente.',
+                                background: '#131825',
+                                color: '#ffffff',
+                                confirmButtonColor: '#ef4444'
+                            });
+                        }
+                    }
+                });
             });
         });
     </script>
