@@ -253,6 +253,7 @@
             transition: all 0.4s ease;
             border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
+            cursor: pointer;
         }
 
         .dashboard-card:hover {
@@ -270,6 +271,10 @@
         .card-image {
             width: 100%; height: 100%; object-fit: cover;
             transition: transform 0.6s ease;
+        }
+
+        .dashboard-card:hover .card-image {
+            transform: scale(1.05);
         }
 
         .card-overlay {
@@ -296,10 +301,149 @@
 
         .dashboard-link { cursor: pointer; text-decoration: none; color: inherit; }
 
+        /* ===== TOOLTIP MODERNO E IMPACTANTE ===== */
+        .tooltip-container {
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .tooltip-container.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .tooltip-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.95) 0%, rgba(14, 165, 233, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            max-width: 320px;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tooltip-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+        }
+
+        .tooltip-arrow {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.95) 0%, rgba(14, 165, 233, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+            bottom: -6px;
+            left: 50%;
+            margin-left: -6px;
+        }
+
+        .tooltip-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tooltip-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tooltip-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .tooltip-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .tooltip-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .tooltip-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 12px 0;
+        }
+
+        .tooltip-footer {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tooltip-pulse {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
         /* Estilização Customizada do SweetAlert2 */
         .swal2-popup {
             border: 1px solid var(--primary) !important;
             border-radius: 20px !important;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tooltip-box {
+                max-width: 280px;
+                padding: 16px;
+            }
         }
     </style>
 </head>
@@ -356,7 +500,7 @@
     <div class="dashboard-container">
         <div class="cards-grid">
             
-            <div class="dashboard-card">
+            <div class="dashboard-card" data-tooltip-title="Dashboard de Vendas" data-tooltip-description="Dashboard de vendas, usado para acompanhar as vendas das agências, e as metas orçadas e alcançadas até o dia atual. Atualização a cada 30 minutos." data-tooltip-badge="Vendas" data-tooltip-icon="📊">
                 <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiNGE5OTFiYmMtN2M0Yi00NjBkLTgwZWYtMGUwM2U2MDllZTg2IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9">
                     <div class="card-image-container">
                         <img src="imagens/vendas_novo.png" alt="Vendas" class="card-image">
@@ -369,7 +513,7 @@
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card" data-tooltip-title="Análises Transportados" data-tooltip-description="Monitore a ocupação de veículos, taxa de utilização, passageiros transportados e eficiência operacional. Dados atualizados em tempo real para melhor gestão." data-tooltip-badge="Operacional" data-tooltip-icon="🚌">
                 <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiOWVjMmUzNTQtZGFlNi00ZjdiLThkOGItMjQwZjllMmE4Nzc1IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9">
                     <div class="card-image-container">
                         <img src="imagens/ocupação.png" alt="Ocupação" class="card-image">
@@ -382,7 +526,7 @@
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card" data-tooltip-title="Faturamento Pca" data-tooltip-description="Relatório completo de faturamento de acordo com as validações feitas pelo softeare Corporativo." data-tooltip-badge="Financeiro" data-tooltip-icon="💰">
                 <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiYmQ4YzZhNmYtODY2OC00ZmIwLThhMDItYjRiZDY2OWNjYzBlIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9">
                     <div class="card-image-container">
                         <img src="imagens/Capa Vendas Pca.png" alt="PCA" class="card-image">
@@ -395,7 +539,7 @@
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card" data-tooltip-title="Comparar Feriados" data-tooltip-description="Análise comparativa de passageiros transportados em períodos de feriados. Feito para comparar datas específicas" data-tooltip-badge="Análise" data-tooltip-icon="📈">
                 <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiNzA4NmE0YjMtN2JhMS00YzAxLWJhZDktYThiMGU4MWVjNDk0IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9">
                     <div class="card-image-container">
                         <img src="imagens/antecipacao.png" alt="Forecast" class="card-image">
@@ -408,7 +552,7 @@
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card" data-tooltip-title="Express" data-tooltip-description="Acompanhe o desempenho do serviço Express em tempo real. Visualize entregas, prazos, satisfação do cliente e indicadores de qualidade de serviço." data-tooltip-badge="Serviços" data-tooltip-icon="⚡">
                 <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiZWY3ODQwODctMGE1Yi00NWM1LTk5OTEtZmMwNDVjYTY2NjEwIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9">
                     <div class="card-image-container">
                         <img src="imagens/express.png" alt="Express" class="card-image">
@@ -421,7 +565,7 @@
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card" data-tooltip-title="Relatório de Linhas" data-tooltip-description="Análise detalhada de desempenho por linha de transporte. Acompanhe passageiros, receitas, custos operacionais e eficiência de cada rota." data-tooltip-badge="Operacional" data-tooltip-icon="🛣️">
                 <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiOWVjMmUzNTQtZGFlNi00ZjdiLThkOGItMjQwZjllMmE4Nzc1IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9&pageName=9590b0d61c552a8cd602">
                     <div class="card-image-container">
                         <img src="imagens/relatorio_linhas.png" alt="TotalBus" class="card-image">
@@ -434,7 +578,7 @@
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card" data-tooltip-title="SAC" data-tooltip-description="Central de Atendimento ao Cliente. Acompanhe chamados, tempo de resposta, satisfação do cliente e indicadores de qualidade do suporte." data-tooltip-badge="Atendimento" data-tooltip-icon="📞">
                 <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiYzQ0ODA4YTUtZDZmZC00YTllLTkzN2UtOGNiNjM4MDliZGIwIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9">
                     <div class="card-image-container">
                         <img src="imagens/sac.png" alt="SAC" class="card-image">
@@ -447,7 +591,7 @@
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card" data-tooltip-title="Em Construção" data-tooltip-description="Este dashboard está sendo desenvolvido. Em breve, novas funcionalidades e relatórios estarão disponíveis para análise e acompanhamento." data-tooltip-badge="Desenvolvimento" data-tooltip-icon="🔨">
                 <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiN2NmMWM3ZWUtYmMyMy00OWU4LTljNTAtNzNjYTBlZTZiY2VkIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9">
                     <div class="card-image-container">
                         <img src="imagens/vendas2.png" alt="Vendas 2" class="card-image">
@@ -460,7 +604,7 @@
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card" data-tooltip-title="Projeto Saúde" data-tooltip-description="Iniciativa de saúde e bem-estar dos colaboradores. Acompanhe indicadores de saúde, programas de prevenção e qualidade de vida na empresa." data-tooltip-badge="RH" data-tooltip-icon="❤️">
                 <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiNjM1ZmFhZDQtYzQzYi00ZjQ0LWEyNTMtMjA0MDM4M2NkZTlkIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9">
                     <div class="card-image-container">
                         <img src="imagens/projeto saude.png" alt="Projeto Saude" class="card-image">
@@ -473,7 +617,7 @@
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card" data-tooltip-title="Relatório Infrações" data-tooltip-description="Monitoramento de infrações de trânsito e conformidade regulatória. Acompanhe multas, penalidades e indicadores de segurança operacional." data-tooltip-badge="Conformidade" data-tooltip-icon="⚠️">
                 <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiYTE0ODdjYWYtYjM1Mi00YmU0LTliZDAtZTFiMTY1Y2UzZWQ1IiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9">
                     <div class="card-image-container">
                         <img src="imagens/infracoes.png" alt="Infrações" class="card-image">
@@ -485,22 +629,119 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
+
+    <!-- Container para o tooltip -->
+    <div class="tooltip-container" id="tooltipContainer"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // ===== SISTEMA DE TOOLTIP MODERNO =====
+        const tooltipContainer = document.getElementById('tooltipContainer');
+        let tooltipTimeout;
+
+        function createTooltip(card, event) {
+            const title = card.getAttribute('data-tooltip-title');
+            const description = card.getAttribute('data-tooltip-description');
+            const badge = card.getAttribute('data-tooltip-badge');
+            const icon = card.getAttribute('data-tooltip-icon');
+
+            if (!title || !description) return;
+
+            const tooltipHTML = `
+                <div class="tooltip-box">
+                    <div class="tooltip-content">
+                        <div class="tooltip-title">
+                            <span class="tooltip-icon">${icon || '📋'}</span>
+                            ${title}
+                        </div>
+                        <div class="tooltip-description">${description}</div>
+                        ${badge ? `<span class="tooltip-badge">${badge}</span>` : ''}
+                        <div class="tooltip-divider"></div>
+                        <div class="tooltip-footer">
+                            <span class="tooltip-pulse"></span>
+                            Clique para acessar o dashboard
+                        </div>
+                    </div>
+                    <div class="tooltip-arrow"></div>
+                </div>
+            `;
+
+            tooltipContainer.innerHTML = tooltipHTML;
+
+            // Posiciona o tooltip
+            updateTooltipPosition(card);
+
+            // Ativa o tooltip com animação
+            setTimeout(() => {
+                tooltipContainer.classList.add('active');
+            }, 10);
+        }
+
+        function updateTooltipPosition(card) {
+            const rect = card.getBoundingClientRect();
+            const tooltipBox = tooltipContainer.querySelector('.tooltip-box');
+            
+            if (!tooltipBox) return;
+
+            const tooltipHeight = tooltipBox.offsetHeight;
+            const tooltipWidth = tooltipBox.offsetWidth;
+
+            // Posição acima do card
+            let top = rect.top + window.scrollY - tooltipHeight - 15;
+            let left = rect.left + window.scrollX + rect.width / 2;
+
+            // Ajusta se sair da tela (acima)
+            if (top < window.scrollY + 20) {
+                top = rect.bottom + window.scrollY + 15;
+            }
+
+            // Ajusta se sair da tela (laterais)
+            if (left - tooltipWidth / 2 < 20) {
+                left = tooltipWidth / 2 + 20;
+            } else if (left + tooltipWidth / 2 > window.innerWidth - 20) {
+                left = window.innerWidth - tooltipWidth / 2 - 20;
+            }
+
+            tooltipContainer.style.left = left + 'px';
+            tooltipContainer.style.top = top + 'px';
+        }
+
+        function hideTooltip() {
+            tooltipContainer.classList.remove('active');
+            clearTimeout(tooltipTimeout);
+        }
+
+        // Event listeners para tooltips
+        document.querySelectorAll('.dashboard-card').forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                clearTimeout(tooltipTimeout);
+                createTooltip(this, e);
+            });
+
+            card.addEventListener('mouseleave', function() {
+                tooltipTimeout = setTimeout(hideTooltip, 100);
+            });
+
+            card.addEventListener('mousemove', function() {
+                updateTooltipPosition(this);
+            });
+        });
+
+        // Esconde tooltip ao sair da página
+        tooltipContainer.addEventListener('mouseleave', hideTooltip);
+
+        // ===== SISTEMA DE ACESSO COM SENHA =====
         document.querySelectorAll('.dashboard-link').forEach(card => {
             card.addEventListener('click', function(e) {
-                // Previne qualquer comportamento padrão indesejado
                 e.preventDefault();
                 
                 const url = this.getAttribute('data-url');
                 const senhaCorreta = 'Gbs@20255';
 
-                // Dispara o SweetAlert2 com animação de impacto
                 Swal.fire({
                     title: 'Acesso Restrito',
                     text: 'Digite a senha do setor para continuar:',
@@ -514,7 +755,6 @@
                     background: '#131825',
                     color: '#ffffff',
                     
-                    // Efeito de entrada (Impacto)
                     showClass: {
                         popup: 'animate__animated animate__zoomIn'
                     },
@@ -522,7 +762,6 @@
                         popup: 'animate__animated animate__zoomOut'
                     },
                     
-                    // Validação de campo vazio
                     inputValidator: (value) => {
                         if (!value) {
                             return 'Você precisa digitar uma senha!';
@@ -531,7 +770,6 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         if (result.value === senhaCorreta) {
-                            // Sucesso: Feedback visual antes de abrir
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Bem-vindo!',
@@ -546,7 +784,6 @@
                                 window.open(url, '_blank');
                             }, 1200);
                         } else {
-                            // Erro: Feedback de senha incorreta
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Acesso Negado',
@@ -563,13 +800,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
