@@ -618,7 +618,7 @@
             </div>
 
             <div class="dashboard-card" data-tooltip-title="Em Construção" data-tooltip-description="Este dashboard está sendo desenvolvido. Em breve, novas funcionalidades e relatórios estarão disponíveis para análise e acompanhamento." data-tooltip-badge="Desenvolvimento" data-tooltip-icon="🔨">
-                <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiOTJkNTBhODQtY2NlYy00ZjY5LWE0MDQtNTQzODRiZDYwYWFhIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9">
+                <div class="dashboard-link" data-url="https://app.powerbi.com/view?r=eyJrIjoiOTJkNTBhODQtY2NlYy00ZjY5LWE0MDQtNTQzODRiZDYwYWFhIiwidCI6IjVmM2MyYmZjLTE5ZjktNDkyZC1hNTRhLWZkODJhNWRkNjMzOCJ9" data-password="Gbs_Seguros">
                     <div class="card-image-container">
                         <img src="imagens/seguro.png" alt="Seguro" class="card-image">
                         <div class="card-overlay"></div>
@@ -764,12 +764,14 @@
         tooltipContainer.addEventListener('mouseleave', hideTooltip);
 
         // ===== SISTEMA DE ACESSO COM SENHA =====
+        const senhaPadrao = 'Gbs@20255';
+
         document.querySelectorAll('.dashboard-link').forEach(card => {
             card.addEventListener('click', function(e) {
                 e.preventDefault();
-                
+
                 const url = this.getAttribute('data-url');
-                const senhaCorreta = 'Gbs@20255';
+                const senhaCorreta = this.getAttribute('data-password') || senhaPadrao;
 
                 Swal.fire({
                     title: 'Acesso Restrito',
