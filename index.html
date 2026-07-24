@@ -766,67 +766,57 @@
 
         // ===== SISTEMA DE ACESSO COM SENHA =====
         const senhaPadrao = 'Gbs@20255';
+        // Função reutilizável para solicitar senha e abrir URL
+        function promptAndOpen(url, senhaCorreta) {
+            if (!url) return;
+            Swal.fire({
+                title: 'Acesso Restrito',
+                text: 'Digite a senha do setor para continuar:',
+                input: 'password',
+                inputPlaceholder: 'Sua senha aqui...',
+                showCancelButton: true,
+                confirmButtonText: 'Validar Acesso',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#00d4ff',
+                cancelButtonColor: '#334155',
+                background: '#131825',
+                color: '#ffffff',
+                showClass: { popup: 'animate__animated animate__zoomIn' },
+                hideClass: { popup: 'animate__animated animate__zoomOut' },
+                inputValidator: (value) => {
+                    if (!value) return 'Você precisa digitar uma senha!';
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (result.value === senhaCorreta) {
+                        Swal.fire({ icon: 'success', title: 'Bem-vindo!', text: 'Redirecionando...', background: '#131825', color: '#ffffff', showConfirmButton: false, timer: 900 });
+                        setTimeout(() => window.open(url, '_blank'), 900);
+                    } else {
+                        Swal.fire({ icon: 'error', title: 'Acesso Negado', text: 'Senha incorreta. Tente novamente.', background: '#131825', color: '#ffffff', confirmButtonColor: '#ef4444' });
+                    }
+                }
+            });
+        }
 
+        // Ligando cliques na div que contém o link
         document.querySelectorAll('.dashboard-link').forEach(card => {
             card.addEventListener('click', function(e) {
                 e.preventDefault();
-
                 const url = this.getAttribute('data-url');
                 const senhaCorreta = this.getAttribute('data-password') || senhaPadrao;
+                promptAndOpen(url, senhaCorreta);
+            });
+        });
 
-                Swal.fire({
-                    title: 'Acesso Restrito',
-                    text: 'Digite a senha do setor para continuar:',
-                    input: 'password',
-                    inputPlaceholder: 'Sua senha aqui...',
-                    showCancelButton: true,
-                    confirmButtonText: 'Validar Acesso',
-                    cancelButtonText: 'Cancelar',
-                    confirmButtonColor: '#00d4ff',
-                    cancelButtonColor: '#334155',
-                    background: '#131825',
-                    color: '#ffffff',
-                    
-                    showClass: {
-                        popup: 'animate__animated animate__zoomIn'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__zoomOut'
-                    },
-                    
-                    inputValidator: (value) => {
-                        if (!value) {
-                            return 'Você precisa digitar uma senha!';
-                        }
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        if (result.value === senhaCorreta) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Bem-vindo!',
-                                text: 'Redirecionando...',
-                                background: '#131825',
-                                color: '#ffffff',
-                                showConfirmButton: false,
-                                timer: 1200
-                            });
-
-                            setTimeout(() => {
-                                window.open(url, '_blank');
-                            }, 1200);
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Acesso Negado',
-                                text: 'Senha incorreta. Tente novamente.',
-                                background: '#131825',
-                                color: '#ffffff',
-                                confirmButtonColor: '#ef4444'
-                            });
-                        }
-                    }
-                });
+        // Garantir que o botão interno também abra o modal (alguns navegadores tratam botões internamente)
+        document.querySelectorAll('.card-button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const link = this.closest('.dashboard-link');
+                if (!link) return;
+                const url = link.getAttribute('data-url');
+                const senhaCorreta = link.getAttribute('data-password') || senhaPadrao;
+                promptAndOpen(url, senhaCorreta);
             });
         });
     </script>
