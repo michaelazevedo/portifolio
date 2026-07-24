@@ -701,8 +701,9 @@
                     </div>
                     <div class="tooltip-arrow"></div>
                 </div>
+            `;
 
-                <div class="dashboard-card" data-tooltip-title="Dashboard de Vendas" data-tooltip-description="Dashboard de vendas, usado para acompanhar as vendas das agências, e as metas orçadas e alcançadas até o dia atual. Atualização a cada 30 minutos." data-tooltip-badge="Vendas" data-tooltip-icon="📊">
+            tooltipContainer.innerHTML = tooltipHTML;
             updateTooltipPosition(card);
 
             // Ativa o tooltip com animação
@@ -805,16 +806,16 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Bem-vindo!',
-                                text: 'Redirecionando...',
+                                text: 'Redirecionando para o dashboard...',
                                 background: '#131825',
                                 color: '#ffffff',
                                 showConfirmButton: false,
-                                timer: 1200
+                                timer: 700
                             });
 
                             setTimeout(() => {
-                                window.open(url, '_blank');
-                            }, 1200);
+                                window.location.assign(url);
+                            }, 700);
                         } else {
                             Swal.fire({
                                 icon: 'error',
