@@ -221,15 +221,109 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Navbar */
-        .navbar {
-            background: rgba(19, 24, 37, 0.95) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        /* Menu */
+        .quick-menu {
+            position: fixed;
+            top: 22px;
+            right: 24px;
+            z-index: 1050;
         }
+
+        .quick-menu .menu-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 42px;
+            padding: 10px 16px;
+            color: #ffffff;
+            background: rgba(19, 24, 37, 0.78);
+            border: 1px solid rgba(0, 212, 255, 0.28);
+            border-radius: 8px;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+            backdrop-filter: blur(14px);
+            font-size: 0.94rem;
+            font-weight: 700;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .quick-menu .menu-button:hover,
+        .quick-menu .menu-button.show {
+            color: #ffffff;
+            background: rgba(26, 34, 53, 0.95);
+            border-color: rgba(0, 212, 255, 0.7);
+            box-shadow: 0 18px 44px rgba(0, 212, 255, 0.16);
+            transform: translateY(-1px);
+        }
+
+        .quick-menu .dropdown-menu {
+            min-width: 250px;
+            margin-top: 10px !important;
+            padding: 10px;
+            background: rgba(10, 14, 26, 0.96);
+            border: 1px solid rgba(0, 212, 255, 0.22);
+            border-radius: 8px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(16px);
+        }
+
+        .quick-menu .dropdown-header {
+            padding: 8px 10px 10px;
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .quick-menu .dropdown-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 44px;
+            padding: 10px 12px;
+            color: #e2e8f0;
+            border-radius: 7px;
+            font-weight: 600;
+            transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+        }
+
+        .quick-menu .dropdown-item:hover,
+        .quick-menu .dropdown-item:focus {
+            color: #ffffff;
+            background: rgba(0, 212, 255, 0.14);
+            transform: translateX(-2px);
+        }
+
+        .quick-menu .item-badge {
+            color: #67e8f9;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .quick-menu .menu-icon {
+            width: 16px;
+            height: 12px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .quick-menu .menu-icon::before,
+        .quick-menu .menu-icon::after,
+        .quick-menu .menu-icon span {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 16px;
+            height: 2px;
+            background: #67e8f9;
+            border-radius: 99px;
+        }
+
+        .quick-menu .menu-icon::before { top: 0; }
+        .quick-menu .menu-icon span { top: 5px; }
+        .quick-menu .menu-icon::after { top: 10px; }
 
         /* Cards Grid */
         .dashboard-container {
@@ -452,24 +546,27 @@
         <div class="bg-gradient"></div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">GBS Dashboards</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="planilhas.html">Planilhas</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="quick-menu dropdown">
+        <button class="btn menu-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="menu-icon" aria-hidden="true"><span></span></span>
+            Menu
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+            <li><h6 class="dropdown-header">Exibicao automatica</h6></li>
+            <li>
+                <a class="dropdown-item" href="https://michaelazevedo.github.io/portifolio/dashboards.html">
+                    <span>Dashboards</span>
+                    <span class="item-badge">Tela 1</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="https://michaelazevedo.github.io/portifolio/dashboards2.html">
+                    <span>Dashboards 2</span>
+                    <span class="item-badge">Tela 2</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <header>
         <div class="header-content">
@@ -688,6 +785,13 @@
                     </div>
                 </div>
             </div>
+
+            </div>
+
+
+
+
+
         </div>
     </div>
 
