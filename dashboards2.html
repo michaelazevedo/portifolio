@@ -36,34 +36,80 @@
             background: #05070d;
         }
 
-        .topbar {
+        .control-toggle {
             position: fixed;
-            top: 12px;
-            left: 12px;
-            right: 12px;
+            top: 10px;
+            right: 10px;
             z-index: 10;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 8px 10px;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
             color: #fff;
-            background: rgba(5, 7, 13, 0.78);
+            background: rgba(5, 7, 13, 0.46);
             border: 1px solid rgba(255, 255, 255, 0.14);
             border-radius: 8px;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            transition: background 180ms ease, opacity 180ms ease, transform 180ms ease;
+        }
+
+        .control-toggle:hover,
+        body.controls-open .control-toggle {
+            background: rgba(5, 7, 13, 0.86);
+            transform: translateY(-1px);
+        }
+
+        .control-toggle span,
+        .control-toggle::before,
+        .control-toggle::after {
+            content: "";
+            display: block;
+            width: 16px;
+            height: 2px;
+            background: #e2e8f0;
+            border-radius: 99px;
+        }
+
+        .control-toggle {
+            gap: 3px;
+            flex-direction: column;
+        }
+
+        .topbar {
+            position: fixed;
+            top: 50px;
+            right: 10px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            max-width: min(560px, calc(100vw - 20px));
+            padding: 8px;
+            color: #fff;
+            background: rgba(5, 7, 13, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 8px;
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+            backdrop-filter: blur(12px);
             opacity: 0;
-            transform: translateY(-8px);
+            pointer-events: none;
+            transform: translateY(-6px) scale(0.98);
+            transform-origin: top right;
             transition: opacity 180ms ease, transform 180ms ease;
         }
 
-        body:hover .topbar,
+        body.controls-open .topbar,
         .topbar:focus-within {
             opacity: 1;
-            transform: translateY(0);
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
         }
 
         .title {
             min-width: 0;
-            flex: 1;
+            flex: 1 1 auto;
             font-size: 14px;
             font-weight: 700;
             white-space: nowrap;
@@ -133,7 +179,11 @@
         <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <div class="topbar">
+    <button type="button" class="control-toggle" id="controlToggle" title="Controles" aria-label="Controles">
+        <span></span>
+    </button>
+
+    <div class="topbar" id="topbar">
         <div class="title" id="dashboardTitle">Dashboard</div>
         <div class="counter" id="counter">1 / 1</div>
         <button type="button" id="prevBtn" title="Anterior">&lt;</button>
@@ -194,6 +244,8 @@
         const counter = document.getElementById("counter");
         const progressBar = document.getElementById("progressBar");
         const pauseBtn = document.getElementById("pauseBtn");
+        const controlToggle = document.getElementById("controlToggle");
+        const topbar = document.getElementById("topbar");
 
         let atual = 0;
         let pausado = false;
@@ -266,12 +318,22 @@
         document.getElementById("prevBtn").addEventListener("click", anterior);
         pauseBtn.addEventListener("click", alternarPausa);
         document.getElementById("fullscreenBtn").addEventListener("click", entrarTelaCheia);
+        controlToggle.addEventListener("click", () => {
+            document.body.classList.toggle("controls-open");
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!topbar.contains(event.target) && !controlToggle.contains(event.target)) {
+                document.body.classList.remove("controls-open");
+            }
+        });
 
         document.addEventListener("keydown", (event) => {
             if (event.key === "ArrowRight") proximo();
             if (event.key === "ArrowLeft") anterior();
             if (event.key === " ") alternarPausa();
             if (event.key.toLowerCase() === "f") entrarTelaCheia();
+            if (event.key === "Escape") document.body.classList.remove("controls-open");
         });
 
         progressTimer = window.setInterval(atualizarProgresso, 1000);
